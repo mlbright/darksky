@@ -1,4 +1,6 @@
 forecast
 ========
 
-Forecast.io API wrapper in Go (Golang)
+Forecast.io v2 API wrapper in Go (Golang)
+
+Documentation: https://developer.forecast.io/docs/v2
