@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-    "github.com/mlbright/forecast/v2"
+    forecast "github.com/mlbright/forecast/v2"
 )
 
 func main() {
