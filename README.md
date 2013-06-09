@@ -12,9 +12,9 @@ package main
 
 import (
 	"fmt"
+	forecast "github.com/mlbright/forecast/v2"
 	"io/ioutil"
 	"log"
-    forecast "github.com/mlbright/forecast/v2"
 )
 
 func main() {
@@ -28,11 +28,12 @@ func main() {
 	lat := "43.6595"
 	long := "-79.3433"
 
-	forecast := forecast.Get(key, lat, long, "now")
-	fmt.Println(forecast.Timezone)
-	fmt.Println(forecast.Currently.Summary)
-    fmt.Println(forecast.Currently.Humidity)
-    fmt.Println(forecast.Currently.Temperature)
-    fmt.Println(forecast.Flags.Units)
+	f := forecast.Get(key, lat, long, "now")
+	fmt.Println(f.Timezone)
+	fmt.Println(f.Currently.Summary)
+	fmt.Println(f.Currently.Humidity)
+	fmt.Println(f.Currently.Temperature)
+	fmt.Println(f.Flags.Units)
+	fmt.Println(f.Currently.WindSpeed)
 }
 ```
