@@ -4,7 +4,6 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -77,24 +76,24 @@ type Forecast struct {
 	Flags     Flags
 }
 
-func Get(key string, lat string, long string, time string) *Forecast {
+func Get(key string, lat string, long string, time string) (*Forecast, error) {
 	coord := lat + "," + long
 
 	var url string
 	if time == "now" {
-		url = BASEURL + "/" + key + "/" + coord + "?units=ca"
+		url = BASEURL + "/" + key + "/" + coord + "?units=si"
 	} else {
-		url = BASEURL + "/" + key + "/" + coord + "," + time + "?units=ca"
+		url = BASEURL + "/" + key + "/" + coord + "," + time + "?units=si"
 	}
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // susceptible to man-in-the-middle
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: false}, // does not seem required any longer
 	}
 	client := &http.Client{Transport: tr}
 	resp, err := client.Get(url)
 
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
@@ -102,8 +101,8 @@ func Get(key string, lat string, long string, time string) *Forecast {
 	var f Forecast
 	err = json.Unmarshal(body, &f)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
-	return &f
+	return &f, nil
 }
