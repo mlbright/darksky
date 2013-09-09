@@ -76,14 +76,21 @@ type Forecast struct {
 	Flags     Flags
 }
 
-func Get(key string, lat string, long string, time string) (*Forecast, error) {
+type Units string
+
+const (
+	CA Units = "ca"
+	SI Units = "si"
+)
+
+func Get(key string, lat string, long string, time string, units Units) (*Forecast, error) {
 	coord := lat + "," + long
 
 	var url string
 	if time == "now" {
-		url = BASEURL + "/" + key + "/" + coord + "?units=si"
+		url = BASEURL + "/" + key + "/" + coord + "?units=" + string(units)
 	} else {
-		url = BASEURL + "/" + key + "/" + coord + "," + time + "?units=si"
+		url = BASEURL + "/" + key + "/" + coord + "," + time + "?units=" + string(units)
 	}
 
 	tr := &http.Transport{
