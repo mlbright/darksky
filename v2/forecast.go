@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 // URL example:  "https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE,TIME?units=ca"
@@ -74,6 +75,7 @@ type Forecast struct {
 	Daily     DataBlock
 	Alerts    []alert
 	Flags     Flags
+	APICalls  int
 }
 
 type Units string
@@ -110,6 +112,9 @@ func Get(key string, lat string, long string, time string, units Units) (*Foreca
 	if err != nil {
 		return nil, err
 	}
+
+	calls, _ := strconv.Atoi(resp.Header.Get("X-Forecast-API-Calls"))
+	f.APICalls = calls
 
 	return &f, nil
 }
