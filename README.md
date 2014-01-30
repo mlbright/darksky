@@ -30,12 +30,16 @@ func main() {
     lat := "43.6595"
     long := "-79.3433"
 
-    f := forecast.Get(key, lat, long, "now", forecast.SI)
+    f, err := forecast.Get(key, lat, long, "now", forecast.SI)
+    if err != nil {
+        log.fatal(err)
+    }
     fmt.Println(f.Timezone)
     fmt.Println(f.Currently.Summary)
     fmt.Println(f.Currently.Humidity)
     fmt.Println(f.Currently.Temperature)
     fmt.Println(f.Flags.Units)
     fmt.Println(f.Currently.WindSpeed)
+
 }
 ```

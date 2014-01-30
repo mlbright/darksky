@@ -3,6 +3,7 @@ package forecast
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -94,13 +95,15 @@ func Get(key string, lat string, long string, time string, units Units) (*Foreca
 		url = BASEURL + "/" + key + "/" + coord + "," + time + "?units=" + string(units)
 	}
 
-	resp, err := http.Get(url)
-
+	res, err := http.Get(url)
 	if err != nil {
-		return nil, err
+		log.Fatal(err)
 	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(res.Body)
+	defer res.Body.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	var f Forecast
 	err = json.Unmarshal(body, &f)
@@ -108,7 +111,7 @@ func Get(key string, lat string, long string, time string, units Units) (*Foreca
 		return nil, err
 	}
 
-	calls, _ := strconv.Atoi(resp.Header.Get("X-Forecast-API-Calls"))
+	calls, _ := strconv.Atoi(res.Header.Get("X-Forecast-API-Calls"))
 	f.APICalls = calls
 
 	return &f, nil
