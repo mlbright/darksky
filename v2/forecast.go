@@ -1,6 +1,7 @@
 package forecast
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"io/ioutil"
 	"log"
@@ -95,7 +96,11 @@ func Get(key string, lat string, long string, time string, units Units) (*Foreca
 		url = BASEURL + "/" + key + "/" + coord + "," + time + "?units=" + string(units)
 	}
 
-	res, err := http.Get(url)
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: false},
+	}
+	client := &http.Client{Transport: tr}
+	res, err := client.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}
