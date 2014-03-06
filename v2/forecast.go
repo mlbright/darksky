@@ -97,15 +97,15 @@ func Get(key string, lat string, long string, time string, units Units) (*Foreca
 	}
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: false},
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: tr}
 	res, err := client.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}
-	body, err := ioutil.ReadAll(res.Body)
 	defer res.Body.Close()
+	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
