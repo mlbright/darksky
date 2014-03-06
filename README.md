@@ -30,16 +30,14 @@ func main() {
     lat := "43.6595"
     long := "-79.3433"
 
-    f, err := forecast.Get(key, lat, long, "now", forecast.SI)
+    f, err := forecast.Get(key, lat, long, "now", forecast.CA)
     if err != nil {
-        log.fatal(err)
+        log.Fatal(err)
     }
-    fmt.Println(f.Timezone)
-    fmt.Println(f.Currently.Summary)
-    fmt.Println(f.Currently.Humidity)
-    fmt.Println(f.Currently.Temperature)
-    fmt.Println(f.Flags.Units)
-    fmt.Println(f.Currently.WindSpeed)
+    fmt.Printf("%s: %s\n", f.Timezone, f.Currently.Summary)
+    fmt.Printf("humidity: %.2f\n", f.Currently.Humidity)
+    fmt.Printf("temperature: %.2f Celsius\n", f.Currently.Temperature)
+    fmt.Printf("wind speed: %.2f\n", f.Currently.WindSpeed)
 
 }
 ```
