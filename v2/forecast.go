@@ -81,8 +81,11 @@ type Forecast struct {
 type Units string
 
 const (
-	CA Units = "ca"
-	SI Units = "si"
+	CA   Units = "ca"
+	SI   Units = "si"
+	US   Units = "us"
+	UK   Units = "uk"
+	AUTO Units = "auto"
 )
 
 func Get(key string, lat string, long string, time string, units Units) (*Forecast, error) {
