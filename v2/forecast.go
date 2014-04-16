@@ -14,7 +14,7 @@ const (
 )
 
 type Flags struct {
-	DarkSkyUnavailable string   `json:""`
+	DarkSkyUnavailable string   `json:"darksky-unavailable"`
 	DarkSkyStations    []string `json:"darksky-stations"`
 	DataPointStations  []string `json:"datapoint-stations"`
 	ISDStations        []string `json:"isds-stations"`
@@ -70,7 +70,7 @@ type Forecast struct {
 	Timezone  string    `json:"timezone"`
 	Offset    float64   `json:"offset"`
 	Currently DataPoint `json:"currently"`
-	Minutely  DataBlock `json:"Minutely"`
+	Minutely  DataBlock `json:"minutely"`
 	Hourly    DataBlock `json:"hourly"`
 	Daily     DataBlock `json:"daily"`
 	Alerts    []alert   `json:"alerts"`
