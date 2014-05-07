@@ -3,7 +3,6 @@ package forecast
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 )
@@ -100,12 +99,12 @@ func Get(key string, lat string, long string, time string, units Units) (*Foreca
 
 	res, err := http.Get(url)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	var f Forecast
