@@ -88,6 +88,39 @@ const (
 )
 
 func Get(key string, lat string, long string, time string, units Units) (*Forecast, error) {
+	res, err := GetResponse(key, lat, long, time, units)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	f, err := FromJSON(body)
+	if err != nil {
+		return nil, err
+	}
+
+	calls, _ := strconv.Atoi(res.Header.Get("X-Forecast-API-Calls"))
+	f.APICalls = calls
+
+	return f, nil
+}
+
+func FromJSON(json_blob []byte) (*Forecast, error) {
+	var f Forecast
+	err := json.Unmarshal(json_blob, &f)
+	if err != nil {
+		return nil, err
+	}
+
+	return &f, nil
+}
+
+func GetResponse(key string, lat string, long string, time string, units Units) (*http.Response, error) {
 	coord := lat + "," + long
 
 	var url string
@@ -99,22 +132,8 @@ func Get(key string, lat string, long string, time string, units Units) (*Foreca
 
 	res, err := http.Get(url)
 	if err != nil {
-		return nil, err
-	}
-	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return nil, err
+		return res, err
 	}
 
-	var f Forecast
-	err = json.Unmarshal(body, &f)
-	if err != nil {
-		return nil, err
-	}
-
-	calls, _ := strconv.Atoi(res.Header.Get("X-Forecast-API-Calls"))
-	f.APICalls = calls
-
-	return &f, nil
+	return res, nil
 }
