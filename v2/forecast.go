@@ -75,6 +75,7 @@ type Forecast struct {
 	Alerts    []alert   `json:"alerts"`
 	Flags     Flags     `json:"flags"`
 	APICalls  int       `json:"apicalls"`
+	Code      int       `json:"code"`
 }
 
 type Units string
