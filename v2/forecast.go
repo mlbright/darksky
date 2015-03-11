@@ -50,6 +50,7 @@ type DataPoint struct {
 	Pressure               float64 `json:"pressure"`
 	Visibility             float64 `json:"visibility"`
 	Ozone                  float64 `json:"ozone"`
+	MoonPhase              float64 `json:"moonPhase"`
 }
 
 type DataBlock struct {
