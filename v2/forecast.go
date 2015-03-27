@@ -60,9 +60,11 @@ type DataBlock struct {
 }
 
 type alert struct {
-	Title   string  `json:"title"`
-	Expires float64 `json:"expires"`
-	URI     string  `json:"uri"`
+	Title       string  `json:"title"`
+	Description string  `json:"description"`
+	Time        float64 `json:"time"`
+	Expires     float64 `json:"expires"`
+	URI         string  `json:"uri"`
 }
 
 type Forecast struct {
