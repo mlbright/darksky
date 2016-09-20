@@ -7,9 +7,9 @@ import (
 	"strconv"
 )
 
-// URL example:  "https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE,TIME?units=ca"
+// URL example:  "https://api.darksky.net/forecast/APIKEY/LATITUDE,LONGITUDE,TIME?units=ca"
 const (
-	BASEURL = "https://api.forecast.io/forecast"
+	BASEURL = "https://api.darksky.net/forecast"
 )
 
 type Flags struct {
