@@ -1,8 +1,8 @@
 # forecast
 
-Forecast.io v2 API wrapper in Go (Golang)
+Dark Sky API wrapper in Go (Golang)
 
-Documentation: https://developer.forecast.io/docs/v2
+Documentation: https://darksky.net/dev/docs
 
 Example usage:
 
