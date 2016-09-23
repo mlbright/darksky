@@ -1,3 +1,4 @@
+## This repo is officially deprecated: please use [DarkSky](https://github.com/mlbright/darksky) instead.
 # forecast
 
 Dark Sky API wrapper in Go (Golang)
