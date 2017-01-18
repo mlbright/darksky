@@ -2,7 +2,7 @@ package forecast
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strconv"
 )
@@ -99,12 +99,7 @@ func Get(key string, lat string, long string, time string, units Units) (*Foreca
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	f, err := FromJSON(body)
+	f, err := FromJSON(res.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -115,10 +110,9 @@ func Get(key string, lat string, long string, time string, units Units) (*Foreca
 	return f, nil
 }
 
-func FromJSON(json_blob []byte) (*Forecast, error) {
+func FromJSON(reader io.Reader) (*Forecast, error) {
 	var f Forecast
-	err := json.Unmarshal(json_blob, &f)
-	if err != nil {
+	if err := json.NewDecoder(reader).Decode(&f); err != nil {
 		return nil, err
 	}
 
