@@ -25,22 +25,22 @@ type Flags struct {
 }
 
 type DataPoint struct {
-	Time                   float64 `json:"time"`
+	Time                   int64   `json:"time"`
 	Summary                string  `json:"summary"`
 	Icon                   string  `json:"icon"`
-	SunriseTime            float64 `json:"sunriseTime"`
-	SunsetTime             float64 `json:"sunsetTime"`
+	SunriseTime            int64   `json:"sunriseTime"`
+	SunsetTime             int64   `json:"sunsetTime"`
 	PrecipIntensity        float64 `json:"precipIntensity"`
 	PrecipIntensityMax     float64 `json:"precipIntensityMax"`
-	PrecipIntensityMaxTime float64 `json:"precipIntensityMaxTime"`
+	PrecipIntensityMaxTime int64   `json:"precipIntensityMaxTime"`
 	PrecipProbability      float64 `json:"precipProbability"`
 	PrecipType             string  `json:"precipType"`
 	PrecipAccumulation     float64 `json:"precipAccumulation"`
 	Temperature            float64 `json:"temperature"`
 	TemperatureMin         float64 `json:"temperatureMin"`
-	TemperatureMinTime     float64 `json:"temperatureMinTime"`
+	TemperatureMinTime     int64   `json:"temperatureMinTime"`
 	TemperatureMax         float64 `json:"temperatureMax"`
-	TemperatureMaxTime     float64 `json:"temperatureMaxTime"`
+	TemperatureMaxTime     int64   `json:"temperatureMaxTime"`
 	ApparentTemperature    float64 `json:"apparentTemperature"`
 	DewPoint               float64 `json:"dewPoint"`
 	WindSpeed              float64 `json:"windSpeed"`
@@ -62,7 +62,7 @@ type DataBlock struct {
 type alert struct {
 	Title       string  `json:"title"`
 	Description string  `json:"description"`
-	Time        float64 `json:"time"`
+	Time        int64   `json:"time"`
 	Expires     float64 `json:"expires"`
 	URI         string  `json:"uri"`
 }
