@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-// URL example:  "https://api.darksky.net/forecast/APIKEY/LATITUDE,LONGITUDE,TIME?units=ca"
+// URL example:  "https://api.darksky.net/forecast/APIKEY/LATITUDE,LONGITUDE,TIME?units=ca&lang=en"
 const (
 	BASEURL = "https://api.darksky.net/forecast"
 )
@@ -92,8 +92,48 @@ const (
 	AUTO Units = "auto"
 )
 
-func Get(key string, lat string, long string, time string, units Units) (*Forecast, error) {
-	res, err := GetResponse(key, lat, long, time, units)
+type Lang string
+
+const (
+	Arabic 				Lang = "ar"
+	Azerbaijani 			Lang = "az"
+	Belarusian 			Lang = "be"
+	Bosnian 			Lang = "bs"
+	Catalan 			Lang = "ca"
+	Czech 				Lang = "cs"
+	German 				Lang = "de"
+	Greek 				Lang = "el"
+	English 			Lang = "en"
+	Spanish 			Lang = "es"
+	Estonian 			Lang = "et"
+	French 				Lang = "fr"
+	Croatian 			Lang = "hr"
+	Hungarian 			Lang = "hu"
+	Indonesian 			Lang = "id"
+	Italian 			Lang = "it"
+	Icelandic 			Lang = "is"
+	Cornish 			Lang = "kw"
+	Indonesia 			Lang = "nb"
+	Dutch 				Lang = "nl"
+	Polish 				Lang = "pl"
+	Portuguese 			Lang = "pt"
+	Russian 			Lang = "ru"
+	Slovak 				Lang = "sk"
+	Slovenian 			Lang = "sl"
+	Serbian 			Lang = "sr"
+	Swedish 			Lang = "sv"
+	Tetum 				Lang = "te"
+	Turkish 			Lang = "tr"
+	Ukrainian 			Lang = "uk"
+	IgpayAtinlay			Lang = "x-pig-latin"
+	SimplifiedChinese		Lang = "zh"
+	TraditionalChinese		Lang = "zh-tw"
+)
+
+
+
+func Get(key string, lat string, long string, time string, units Units, lang Lang) (*Forecast, error) {
+	res, err := GetResponse(key, lat, long, time, units, lang)
 	if err != nil {
 		return nil, err
 	}
@@ -125,14 +165,14 @@ func FromJSON(json_blob []byte) (*Forecast, error) {
 	return &f, nil
 }
 
-func GetResponse(key string, lat string, long string, time string, units Units) (*http.Response, error) {
+func GetResponse(key string, lat string, long string, time string, units Units, lang Lang) (*http.Response, error) {
 	coord := lat + "," + long
 
 	var url string
 	if time == "now" {
-		url = BASEURL + "/" + key + "/" + coord + "?units=" + string(units)
+		url = BASEURL + "/" + key + "/" + coord + "?units=" + string(units) + "&lang=" + string(lang)
 	} else {
-		url = BASEURL + "/" + key + "/" + coord + "," + time + "?units=" + string(units)
+		url = BASEURL + "/" + key + "/" + coord + "," + time + "?units=" + string(units) + "&lang=" + string(lang)
 	}
 
 	res, err := http.Get(url)
