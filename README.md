@@ -2,8 +2,6 @@
 
 Dark Sky API wrapper in Go (Golang)
 
-[![Sourcegraph](https://sourcegraph.com/github.com/mlbright/darksky/-/badge.svg)](https://sourcegraph.com/github.com/mlbright/darksky?badge)
-
 Documentation: https://darksky.net/dev/docs
 
 Example usage:
