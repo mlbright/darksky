@@ -29,7 +29,7 @@ func main() {
     lat := "43.6595"
     long := "-79.3433"
 
-    f, err := forecast.Get(key, lat, long, "now", forecast.CA)
+	f, err := forecast.Get(key, lat, long, "now", forecast.CA, forecast.English)
     if err != nil {
         log.Fatal(err)
     }
