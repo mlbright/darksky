@@ -18,6 +18,7 @@ type Flags struct {
 	DataPointStations  []string `json:"datapoint-stations,omitempty"`
 	ISDStations        []string `json:"isds-stations,omitempty"`
 	LAMPStations       []string `json:"lamp-stations,omitempty"`
+	MADISStations      []string `json:"madis-stations,omitempty"`
 	METARStations      []string `json:"metars-stations,omitempty"`
 	METNOLicense       string   `json:"metnol-license,omitempty"`
 	Sources            []string `json:"sources,omitempty"`
@@ -64,11 +65,13 @@ type DataBlock struct {
 }
 
 type alert struct {
-	Title       string  `json:"title,omitempty"`
-	Description string  `json:"description,omitempty"`
-	Time        int64   `json:"time,omitempty"`
-	Expires     float64 `json:"expires,omitempty"`
-	URI         string  `json:"uri,omitempty"`
+	Title       string   `json:"title,omitempty"`
+	Regions     []string `json:"regions,omitempt"`
+	Severity    string   `json:"severity"`
+	Description string   `json:"description,omitempty"`
+	Time        int64    `json:"time,omitempty"`
+	Expires     float64  `json:"expires,omitempty"`
+	URI         string   `json:"uri,omitempty"`
 }
 
 type Forecast struct {
