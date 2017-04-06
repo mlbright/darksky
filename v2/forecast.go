@@ -47,6 +47,8 @@ type DataPoint struct {
 	ApparentTemperatureMinTime int64   `json:"apparentTemperatureMinTime,omitempty"`
 	ApparentTemperatureMax     float64 `json:"apparentTemperatureMax,omitempty"`
 	ApparentTemperatureMaxTime int64   `json:"apparentTemperatureMaxTime,omitempty"`
+	NearestStormBearing        float64 `json:"nearestStormBearing,omitempty"`
+	NearestStormDistance       int64   `json:"nearestStormDistance,omitempty"`
 	DewPoint                   float64 `json:"dewPoint,omitempty"`
 	WindSpeed                  float64 `json:"windSpeed,omitempty"`
 	WindBearing                float64 `json:"windBearing,omitempty"`
