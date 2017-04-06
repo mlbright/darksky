@@ -66,8 +66,8 @@ type DataBlock struct {
 
 type alert struct {
 	Title       string   `json:"title,omitempty"`
-	Regions     []string `json:"regions,omitempt"`
-	Severity    string   `json:"severity"`
+	Regions     []string `json:"regions,omitempty"`
+	Severity    string   `json:"severity,omitempty"`
 	Description string   `json:"description,omitempty"`
 	Time        int64    `json:"time,omitempty"`
 	Expires     float64  `json:"expires,omitempty"`
