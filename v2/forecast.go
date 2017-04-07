@@ -18,6 +18,7 @@ type Flags struct {
 	DataPointStations  []string `json:"datapoint-stations,omitempty"`
 	ISDStations        []string `json:"isds-stations,omitempty"`
 	LAMPStations       []string `json:"lamp-stations,omitempty"`
+	MADISStations      []string `json:"madis-stations,omitempty"`
 	METARStations      []string `json:"metars-stations,omitempty"`
 	METNOLicense       string   `json:"metnol-license,omitempty"`
 	Sources            []string `json:"sources,omitempty"`
@@ -46,6 +47,8 @@ type DataPoint struct {
 	ApparentTemperatureMinTime int64   `json:"apparentTemperatureMinTime,omitempty"`
 	ApparentTemperatureMax     float64 `json:"apparentTemperatureMax,omitempty"`
 	ApparentTemperatureMaxTime int64   `json:"apparentTemperatureMaxTime,omitempty"`
+	NearestStormBearing        float64 `json:"nearestStormBearing,omitempty"`
+	NearestStormDistance       int64   `json:"nearestStormDistance,omitempty"`
 	DewPoint                   float64 `json:"dewPoint,omitempty"`
 	WindSpeed                  float64 `json:"windSpeed,omitempty"`
 	WindBearing                float64 `json:"windBearing,omitempty"`
@@ -64,11 +67,13 @@ type DataBlock struct {
 }
 
 type alert struct {
-	Title       string  `json:"title,omitempty"`
-	Description string  `json:"description,omitempty"`
-	Time        int64   `json:"time,omitempty"`
-	Expires     float64 `json:"expires,omitempty"`
-	URI         string  `json:"uri,omitempty"`
+	Title       string   `json:"title,omitempty"`
+	Regions     []string `json:"regions,omitempty"`
+	Severity    string   `json:"severity,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Time        int64    `json:"time,omitempty"`
+	Expires     float64  `json:"expires,omitempty"`
+	URI         string   `json:"uri,omitempty"`
 }
 
 type Forecast struct {
