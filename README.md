@@ -11,7 +11,7 @@ package main
 
 import (
     "fmt"
-    forecast "github.com/mlbright/forecast/v2"
+    forecast "github.com/mlbright/darksky/v2"
     "io/ioutil"
     "log"
     "strings"
