@@ -51,6 +51,7 @@ type DataPoint struct {
 	NearestStormDistance       float64 `json:"nearestStormDistance,omitempty"`
 	DewPoint                   float64 `json:"dewPoint,omitempty"`
 	WindSpeed                  float64 `json:"windSpeed,omitempty"`
+	WindGust                   float64 `json:"windGust,omitempty"`
 	WindBearing                float64 `json:"windBearing,omitempty"`
 	CloudCover                 float64 `json:"cloudCover,omitempty"`
 	Humidity                   float64 `json:"humidity,omitempty"`
