@@ -59,6 +59,8 @@ type DataPoint struct {
 	Visibility                 float64 `json:"visibility,omitempty"`
 	Ozone                      float64 `json:"ozone,omitempty"`
 	MoonPhase                  float64 `json:"moonPhase,omitempty"`
+	UVIndex                    int64   `json:"uvIndex,omitempty"`
+	UVIndexTime                int64   `json:"uvIndexTime,omitempty"`
 }
 
 type DataBlock struct {
